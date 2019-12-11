@@ -241,6 +241,7 @@ config_file = 'config.ini'
 @click.option('--legendastv', type=click.STRING, nargs=2, metavar='USERNAME PASSWORD', help='LegendasTV configuration.')
 @click.option('--opensubtitles', type=click.STRING, nargs=2, metavar='USERNAME PASSWORD',
               help='OpenSubtitles configuration.')
+@click.option('--subdivx', type=click.STRING, nargs=2, metavar='USERNAME PASSWORD', help='subdivx configuration.')
 @click.option('--omdb', type=click.STRING, nargs=1, metavar='APIKEY', help='OMDB API key.')
 @click.option('--cache-dir', type=click.Path(writable=True, file_okay=False), default=dirs.user_cache_dir,
               show_default=True, expose_value=True, help='Path to the cache directory.')
@@ -280,7 +281,8 @@ def subliminal(ctx, addic7ed, legendastv, opensubtitles, omdb, cache_dir, debug)
     if opensubtitles:
         ctx.obj['provider_configs']['opensubtitles'] = {'username': opensubtitles[0], 'password': opensubtitles[1]}
         ctx.obj['provider_configs']['opensubtitlesvip'] = {'username': opensubtitles[0], 'password': opensubtitles[1]}
-
+    if subdivx:
+        ctx.obj['provider_configs']['subdivx'] = {'username': subdivx[0], 'password': subdivx[1]}
     # refiner configs
     if omdb:
         ctx.obj['refiner_configs']['omdb'] = {'apikey': omdb}
