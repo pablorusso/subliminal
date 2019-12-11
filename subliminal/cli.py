@@ -248,7 +248,7 @@ config_file = 'config.ini'
 @click.option('--debug', is_flag=True, help='Print useful information for debugging subliminal and for reporting bugs.')
 @click.version_option(__version__)
 @click.pass_context
-def subliminal(ctx, addic7ed, legendastv, opensubtitles, omdb, cache_dir, debug):
+def subliminal(ctx, addic7ed, legendastv, opensubtitles, subdivx, omdb, cache_dir, debug):
     """Subtitles, faster than your thoughts."""
     # create cache directory
     try:
