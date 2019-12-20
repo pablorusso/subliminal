@@ -499,7 +499,8 @@ class SubdivxProvider(Provider):
 
         # TODO
         content_list = content.namelist()
-        NON_LATINO_REFERENCES_IN_FILENAME = ['Espa§a'.decode('utf-8'),'espa§a'.decode('utf-8')]
+        # NON_LATINO_REFERENCES_IN_FILENAME = ['Espa§a'.decode('utf-8'),'espa§a'.decode('utf-8')]
+        NON_LATINO_REFERENCES_IN_FILENAME = ['Espa§a','espa§a']
         # logger.info('archive content_list %r', content_list)
 
         if len(content_list) == 1:
