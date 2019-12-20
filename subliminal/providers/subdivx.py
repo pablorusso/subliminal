@@ -6,7 +6,6 @@ import re
 import zlib
 import html
 import io
-import html5lib
 
 from babelfish import Language, language_converters
 from guessit import guessit
