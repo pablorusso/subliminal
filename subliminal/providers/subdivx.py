@@ -186,7 +186,7 @@ class SubdivxSubtitle(Subtitle):
             else:
                 logger.debug('source NOT found')
                 return False
-        elif source.lower() == 'Blu-ray':
+        elif source.lower() == 'blu-ray':
             if any(word in self.description.lower() for word in ['bluray','bdrip','brrip']):
                 logger.debug('source found')
                 return True
