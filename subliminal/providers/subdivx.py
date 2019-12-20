@@ -186,6 +186,13 @@ class SubdivxSubtitle(Subtitle):
             else:
                 logger.debug('source NOT found')
                 return False
+        elif source.lower() == 'Blu-ray':
+            if any(word in self.description.lower() for word in ['bluray','bdrip','brrip']):
+                logger.debug('source found')
+                return True
+            else:
+                logger.debug('source NOT found')
+                return False
         elif source.lower() in self.description.lower():
             logger.debug('source found')
             return True
@@ -533,7 +540,7 @@ class SubdivxProvider(Provider):
                     logger.debug('discard España subtitle files')
                     continue
                 else:
-                    logger.debug('else: %s', name)
+                    logger.debug('sub selected: %s', name)
                     sub = fix_line_ending(content.read(name))
         # logger.info('sub %r', sub)
         subtitle.content = sub
