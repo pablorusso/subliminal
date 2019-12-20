@@ -17,7 +17,7 @@ from zipfile import ZipFile, is_zipfile
 from . import ParserBeautifulSoup, Provider, TimeoutSafeTransport
 from .. import __short_version__
 from ..exceptions import AuthenticationError, ConfigurationError, DownloadLimitExceeded, ProviderError
-from ..subtitle import Subtitle, fix_line_ending, guess_matches
+from ..subtitle import Subtitle, fix_line_ending
 from ..utils import sanitize
 from ..video import Episode, Movie
 
