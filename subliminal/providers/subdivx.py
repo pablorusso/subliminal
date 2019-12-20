@@ -33,6 +33,13 @@ subtitle_re = re.compile(r'''<a\s+class="titulo_menu_izq2?"\s+href="http://www.s
 series_re = re.compile(r"""((?P<serie_name_b>.*)[ .]\((?P<year>\d{4})\)[ .][Ss](?P<season_b>\d{1,2})[Ee](?P<episode_b>\d{1,2})|(?P<serie_name_a>.*)[ .][Ss](?P<season_a>\d{1,2})[Ee](?P<episode_a>\d{1,2}))""")
 series_filename_re = re.compile(r"""((?P<serie_name_b>.*)[ .](?P<year>\d{4})[ .][Ss](?P<season_b>\d{1,2})[Ee](?P<episode_b>\d{1,2}).*|(?P<serie_name_a>.*)[ .][Ss](?P<season_a>\d{1,2})[Ee](?P<episode_a>\d{1,2}).*)""")
 
+requests.packages.urllib3.util.ssl_.DEFAULT_CIPHERS += 'HIGH:!DH:!aNULL'
+try:
+    requests.packages.urllib3.contrib.pyopenssl.DEFAULT_SSL_CIPHER_LIST += 'HIGH:!DH:!aNULL'
+except AttributeError:
+    # no pyopenssl support used / needed / available
+    pass
+
 class SubdivxSubtitle(Subtitle):
     """Subdivx Subtitle."""
     provider_name = 'subdivx'
@@ -311,7 +318,7 @@ class SubdivxProvider(Provider):
         if self.username and self.password:
             # logger.info('Logging in')
             data = {'usuario': self.username, 'clave': self.password,'Enviar':'Entrar','accion':'50','enviau':'1','refer':'https://www.subdivx.com/'}
-            r = self.session.post('https://www.subdivx.com/index.php', data=data, timeout=10)
+            r = self.session.post('https://www.subdivx.com/index.php', data=data, timeout=10, verify=False)
             r.raise_for_status()
 
             # soup = ParserBeautifulSoup(r.content, ['html.parser'])
@@ -329,7 +336,7 @@ class SubdivxProvider(Provider):
         # logout
         if self.logged_in:
             # logger.info('Logging out')
-            r = self.session.get(self.server_url + 'index.php?abandon=1', allow_redirects=False, timeout=10)
+            r = self.session.get(self.server_url + 'index.php?abandon=1', allow_redirects=False, timeout=10, verify=False)
             r.raise_for_status()
             logger.debug('Logged out')
             self.logged_in = False
@@ -347,7 +354,7 @@ class SubdivxProvider(Provider):
 
             logger.debug('url %r', url)
             # get the page of the episode / movie
-            r = self.session.get(url, timeout=10)
+            r = self.session.get(url, timeout=10, verify=False)
             r.raise_for_status()
 
             soup = ParserBeautifulSoup(r.content, ['lxml', 'html.parser'])
@@ -480,7 +487,7 @@ class SubdivxProvider(Provider):
     def download_subtitle(self, subtitle):
         logger.info('Downloading archive %s', subtitle)
         r = self.session.get(subtitle.subtitle_url, headers={'Referer': MAIN_SUBDIVX_URL+subtitle.subtitle_id},
-                             timeout=10)
+                             timeout=10, verify=False)
         r.raise_for_status()
 
         # open the archive
