@@ -6,11 +6,11 @@ import re
 import zlib
 import html
 import io
+import urllib.parse
 
 from babelfish import Language, language_converters
 from guessit import guessit
 from requests import Session
-from urllib import quote_plus
 from rarfile import RarFile, is_rarfile
 from zipfile import ZipFile, is_zipfile
 
@@ -343,7 +343,7 @@ class SubdivxProvider(Provider):
         while True:
             # logger.debug('Trying page %d', page)
             url = SEARCH_PAGE_URL % {'page': page,
-                                     'query': quote_plus(query)}
+                                     'query': urllib.parse.quote_plus(query)}
 
             logger.debug('url %r', url)
             # get the page of the episode / movie
