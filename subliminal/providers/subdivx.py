@@ -165,29 +165,29 @@ class SubdivxSubtitle(Subtitle):
         else:
             return False
 
-    def is_format_found_in_description(self, format):
-        logger.debug('format: "%s"' % format)
+    def is_source_found_in_description(self, source):
+        logger.debug('source: "%s"' % source)
         logger.debug('description: "%s"' % self.description)
 
-        if format.lower() == 'web-dl':
+        if source.lower() == 'web-dl':
             if any(word in self.description.lower() for word in ['web-dl','web dl','webdl']):
-                logger.debug('format found')
+                logger.debug('source found')
                 return True
             else:
-                logger.debug('format NOT found')
+                logger.debug('source NOT found')
                 return False
-        elif format.lower() == 'webrip':
+        elif source.lower() == 'webrip':
             if any(word in self.description.lower() for word in ['web rip','webrip','web-rip']):
-                logger.debug('format found')
+                logger.debug('source found')
                 return True
             else:
-                logger.debug('format NOT found')
+                logger.debug('source NOT found')
                 return False
-        elif format.lower() in self.description.lower():
-            logger.debug('format found')
+        elif source.lower() in self.description.lower():
+            logger.debug('source found')
             return True
         else:
-            logger.debug('format NOT found')
+            logger.debug('source NOT found')
             return False
 
     def guess_spanish_neutral(self):
@@ -229,8 +229,8 @@ class SubdivxSubtitle(Subtitle):
             if (video.resolution and self.is_resolution_found_in_description(video.resolution)):
                 matches.add('resolution')
 
-            if (video.format and self.is_format_found_in_description(video.format)):
-                matches.add('format')
+            if (video.source and self.is_source_found_in_description(video.source)):
+                matches.add('source')
 
             # Hack to prefer neutral spanish in case of a tie
             if(self.guess_spanish_neutral()):
@@ -262,8 +262,8 @@ class SubdivxSubtitle(Subtitle):
             if (video.resolution and self.is_resolution_found_in_description(video.resolution)):
                 matches.add('resolution')
 
-            if (video.format and self.is_format_found_in_description(video.format)):
-                matches.add('format')
+            if (video.source and self.is_source_found_in_description(video.source)):
+                matches.add('source')
 
             # Hack to prefer neutral spanish in case of a tie
             if(self.guess_spanish_neutral()):
