@@ -4,7 +4,7 @@ import logging
 import os
 import re
 import zlib
-import HTMLParser
+import html
 import io
 import html5lib
 
@@ -400,7 +400,7 @@ class SubdivxProvider(Provider):
                 logger.debug('"%s"' % language)
 
                 # h = HTMLParser()
-                subtitle_url = HTMLParser.HTMLParser().unescape(groups['subtitle_url'])
+                subtitle_url = html.unescape(groups['subtitle_url'])
                 logger.debug('"%s"' % subtitle_url)
 
                 video_name = groups['video_name']
