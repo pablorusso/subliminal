@@ -34,7 +34,7 @@ series_re = re.compile(r"""((?P<serie_name_b>.*)[ .]\((?P<year>\d{4})\)[ .][Ss](
 series_filename_re = re.compile(r"""((?P<serie_name_b>.*)[ .](?P<year>\d{4})[ .][Ss](?P<season_b>\d{1,2})[Ee](?P<episode_b>\d{1,2}).*|(?P<serie_name_a>.*)[ .][Ss](?P<season_a>\d{1,2})[Ee](?P<episode_a>\d{1,2}).*)""")
 
 import requests.packages.urllib3.util.ssl_
-requests.packages.urllib3.util.ssl_.DEFAULT_CIPHERS = 'ALL'
+requests.packages.urllib3.util.ssl_.DEFAULT_CIPHERS += 'HIGH:!DH:!aNULL'
 
 class SubdivxSubtitle(Subtitle):
     """Subdivx Subtitle."""
