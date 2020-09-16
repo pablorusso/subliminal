@@ -29,7 +29,7 @@ MAIN_SUBDIVX_URL = "http://www.subdivx.com/"
 SEARCH_PAGE_URL = MAIN_SUBDIVX_URL + \
     "index.php?accion=5&masdesc=&oxdown=1&pg=%(page)s&buscar=%(query)s"
 PAGE_ENCODING = 'latin1'
-subtitle_re = re.compile(r'''<a\s+class="titulo_menu_izq2?"\s+href="http://www.subdivx.com/(?P<subtitle_id>.+?)\.html">(Subtitulo\s+de\s+)?(?P<video_name>.+?)</a></div><img\sclass="detalle_calif"\sname="detalle_calif"\ssrc="img/calif\d.gif"/></div><div id="buscador_detalle">\n<div\s+id="buscador_detalle_sub">(?P<description>[\s\S]+?)</div>.+?<b>Downloads:</b>(?P<downloads>.+?)<b>Cds:</b>.+?<b>Subido\ por:</b>\s*<a.+?>(?P<uploader>.+?)</a>.+?.<a.+?href="(?P<subtitle_url>.+?)"\srel="nofollow"\starget="new">.+?</div></div>''', re.DOTALL)
+subtitle_re = re.compile(r'''<a\s+class="titulo_menu_izq2?"\s+href="https?://www\.subdivx\.com/(?P<subtitle_id>.+?)\.html">(Subtitulo\s+de\s+)?(?P<video_name>.+?)</a></div><img\ssrc="img/calif\d\.gif"\sclass="detalle_calif"\sname="detalle_calif"></div><div\sid="buscador_detalle">\n<div\s+id="buscador_detalle_sub">(?P<description>[\s\S]+?)</div><div\s+id="buscador_detalle_sub_datos"><b>Downloads:</b>(?P<downloads>.+?)<b>Cds:</b>.+?<b>Subido\spor:</b>\s*<a.+?>(?P<uploader>.+?)</a>.+?<a.+?href="(?P<subtitle_url>.+?)"><img.+?</a></div></div>''', re.DOTALL)
 series_re = re.compile(r"""((?P<serie_name_b>.*)[ .]\((?P<year>\d{4})\)[ .][Ss](?P<season_b>\d{1,2})[Ee](?P<episode_b>\d{1,2})|(?P<serie_name_a>.*)[ .][Ss](?P<season_a>\d{1,2})[Ee](?P<episode_a>\d{1,2}))""")
 series_filename_re = re.compile(r"""((?P<serie_name_b>.*)[ .](?P<year>\d{4})[ .][Ss](?P<season_b>\d{1,2})[Ee](?P<episode_b>\d{1,2}).*|(?P<serie_name_a>.*)[ .][Ss](?P<season_a>\d{1,2})[Ee](?P<episode_a>\d{1,2}).*)""")
 
