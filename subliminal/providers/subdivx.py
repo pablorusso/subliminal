@@ -52,6 +52,10 @@ class SubdivxSubtitle(Subtitle):
         self.subtitle_url = subtitle_url
 
     @property
+    def id(self):
+        return self.subtitle_id
+
+    @property
     def movie_title(self):
         movie = re.findall(r"""(.*?[ .]\(\d{4})\)  # Title including year
                        [ .a-zA-Z]*     # Space, period, or words
